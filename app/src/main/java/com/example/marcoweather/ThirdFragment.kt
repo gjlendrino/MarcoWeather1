@@ -7,14 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.marcoweather.databinding.FragmentSecondBinding
+import com.example.marcoweather.databinding.FragmentThirdBinding
 
 /**
- * A simple [Fragment] subclass as the second destination in the navigation.
+ * A simple [Fragment] subclass as the third destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class ThirdFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentThirdBinding? = null
     private lateinit var gestureDetector: GestureDetector
 
     // This property is only valid between onCreateView and
@@ -25,14 +25,14 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentThirdBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        gestureDetector = GestureDetector(requireContext(), MyGestureListener(::navigateToPreviousFragment, ::navigateToNextFragment))
+        gestureDetector = GestureDetector(requireContext(), MyGestureListener(::navigateToPreviousFragment, null))
         view.setOnTouchListener { _, event ->
             gestureDetector.onTouchEvent(event)
         }
@@ -44,10 +44,6 @@ class SecondFragment : Fragment() {
     }
 
     private fun navigateToPreviousFragment() {
-        findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-    }
-
-    private fun navigateToNextFragment() {
-        findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment)
+        findNavController().navigate(R.id.action_ThirdFragment_to_SecondFragment)
     }
 }
